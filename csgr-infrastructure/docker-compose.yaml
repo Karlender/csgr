@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17.2
+    container_name: csgr-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: csgr_db
+      # Reference the secret for the password
+      # POSTGRES_PASSWORD_FILE: /run/secrets/csgr_postgres_password
+      # FIXME This is only here for setup simplification. Use the docker secret for more secure storage of the password.
+      POSTGRES_PASSWORD: +d5;_aQpBP(t3]!kHh9g_hXN9dG^m-N9
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
