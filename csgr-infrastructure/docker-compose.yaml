@@ -13,7 +13,7 @@ services:
       # FIXME This is only here for setup simplification. Use the docker secret for more secure storage of the password.
       POSTGRES_PASSWORD: +d5;_aQpBP(t3]!kHh9g_hXN9dG^m-N9
     ports:
-      - "5432:5432"
+      - "15432:5432" # Using port 15432 because my private pc has this already reserved
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
