@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/case_study_groupchat_roulette.iml" filepath="$PROJECT_DIR$/.idea/case_study_groupchat_roulette.iml" />
+      <module fileurl="file://$PROJECT_DIR$/csgr-frontend.iml" filepath="$PROJECT_DIR$/csgr-frontend.iml" />
+    </modules>
+  </component>
+</project>
