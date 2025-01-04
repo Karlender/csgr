@@ -18,6 +18,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
     // Others
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.0")
+    compileOnly("org.projectlombok:lombok:1.18.36")
+    annotationProcessor("org.projectlombok:lombok:1.18.36")
 
     // Test
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
