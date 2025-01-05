@@ -1,0 +1,89 @@
+<div class="container">
+  <h1>Chat Roulette Year Plans</h1>
+
+  <!-- Year Plan Creation Form -->
+  <h2>Create New Year Plan</h2>
+  <form (ngSubmit)="createYearPlan()">
+    <!-- Employees List -->
+    <label>Employees:</label>
+    <div>
+      <input
+        type="text"
+        id="employeeName"
+        [(ngModel)]="employeeName"
+        name="employeeName"
+        placeholder="Enter employee name"
+        required
+      />
+      <button type="button" (click)="addEmployee()">Add Employee</button>
+    </div>
+    <div>
+      <span *ngFor="let employee of newYearPlan.employees; let i = index">
+        <span> {{ employee }} </span>
+        <button type="button" (click)="removeEmployee(i)">Remove</button>
+      </span>
+    </div>
+
+    <!-- Group Count -->
+    <label for="groupCount">Group Count:</label>
+    <input
+      type="number"
+      id="groupCount"
+      [(ngModel)]="newYearPlan.groupCount"
+      name="groupCount"
+      required
+      min="2"
+    />
+
+    <!-- Rotation -->
+    <label for="rotation">Rotation:</label>
+    <select
+      id="rotation"
+      [(ngModel)]="newYearPlan.rotation"
+      name="rotation"
+      required
+    >
+      <option value="DAILY">DAILY</option>
+      <option value="WEEKLY">WEEKLY</option>
+      <option value="MONTHLY">MONTHLY</option>
+    </select>
+
+    <!-- Year -->
+    <label for="year">Year:</label>
+    <input
+      type="number"
+      id="year"
+      [(ngModel)]="newYearPlan.year"
+      name="year"
+      required
+    />
+
+    <button type="submit">Create Year Plan</button>
+  </form>
+
+  <!-- Year Plans List -->
+  <h2>Year Plans</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>UUID</th>
+      <th>Year</th>
+      <th>Rotation</th>
+      <th>Employees</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let plan of yearPlans">
+        <td (click)="viewYearPlan(plan.uuid)">{{ plan.uuid }}</td>
+        <td (click)="viewYearPlan(plan.uuid)">{{ plan.year }}</td>
+        <td (click)="viewYearPlan(plan.uuid)">{{ plan.rotation }}</td>
+        <td (click)="viewYearPlan(plan.uuid)">{{ plan.employees.join(', ') }}</td>
+        <td>
+          <button (click)="downloadExcel(plan.uuid)">Download Excel</button>
+          <button (click)="downloadICS(plan.uuid)">Download ICS</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

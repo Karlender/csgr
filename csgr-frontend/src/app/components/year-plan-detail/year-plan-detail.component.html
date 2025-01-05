@@ -1,0 +1,36 @@
+<div *ngIf="yearPlanDetail">
+  <h2>Year Plan Details</h2>
+
+  <!-- Basic Details -->
+  <p><strong>UUID:</strong> {{ yearPlanDetail.uuid }}</p>
+  <p><strong>Year:</strong> {{ yearPlanDetail.year }}</p>
+  <p><strong>Rotation:</strong> {{ yearPlanDetail.rotation }}</p>
+
+  <!-- Employee List -->
+  <h3>Encounter Details</h3>
+  <p>Click on an employee to see their encounter details:</p>
+  <div>
+    <span *ngFor="let employee of employeesInMatrix">
+      <button (click)="showEncounters(employee)">{{ employee }}</button>
+    </span>
+  </div>
+
+  <!-- Encounter Details -->
+  <div *ngIf="selectedEmployee">
+    <h4>Encounters for {{ selectedEmployee }}</h4>
+    <table border="1">
+      <thead>
+      <tr>
+        <th>Employee</th>
+        <th>Encounters</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let employee of employeesInMatrix">
+        <td>{{ employee }}</td>
+        <td>{{ encounterDetails[employee] || 0 }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
