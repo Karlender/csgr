@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  postgres:
+  db:
     image: postgres:17.2
     container_name: csgr-db
     restart: always
@@ -15,7 +15,7 @@ services:
     ports:
       - "15432:5432" # Using port 15432 because my private pc has this already reserved
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
+  db_data:
