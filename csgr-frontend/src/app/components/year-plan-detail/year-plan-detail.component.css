@@ -17,6 +17,7 @@ form {
 
 table {
   width: 100%;
+  border: 1px;
   border-collapse: collapse;
 }
 

@@ -1,5 +1,5 @@
 package de.csgr.entity;
 
 public enum Rotation {
-    DAILY, WEEKLY, MONTHLY;
+    DAILY, WEEKLY, MONTHLY
 }

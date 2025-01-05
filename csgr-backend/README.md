@@ -17,7 +17,7 @@ Make sure you are in the correct folder when running this manually (csgr-backend
 ./gradlew bootrun
 ```
 
-## [api](api/)
+## [api](api)
 
 Contains the openAPI file with the current API definition for quick usage and reference.
 
@@ -48,21 +48,21 @@ erDiagram
     APPOINTMENT ||--o{ APPOINTMENT_GROUP : contains
 ```
 
-## [src/main/java](src/main/java/de/csgr/)
+## [src/main/java](src/main/java/de/csgr)
 The following packages dictate the general structure of the backend application:
-- [configuration](src/main/java/de/csgr/configuration/)
+- [configuration](src/main/java/de/csgr/configuration)
     - contains general application configurations (eg. security config)
-- [controller](src/main/java/de/csgr/controller/)
+- [controller](src/main/java/de/csgr/controller)
     - API entrypoints
-- [dto](src/main/java/de/csgr/dto/)
+- [dto](src/main/java/de/csgr/dto)
     - objects for use in the API endpoints
-- [entity](src/main/java/de/csgr/entity/)
+- [entity](src/main/java/de/csgr/entity)
     - objects for use with the ORM (DB representation)
-- [repository](src/main/java/de/csgr/repository/)
+- [repository](src/main/java/de/csgr/repository)
     - handling of database requests through spring repository interfaces
-- [service](src/main/java/de/csgr/service/)
+- [service](src/main/java/de/csgr/service)
     - further processes controller requests and encapsulates business logic
-- [util](src/main/java/de/csgr/util/)
+- [util](src/main/java/de/csgr/util)
     - static utility methods for generating year plans and exporting to excel + iCal
 
 
@@ -114,10 +114,10 @@ classDiagram
     DTO <--> Entity : maps to
 ```
 
-## [src/main/resources](src/main/resources/)
+## [src/main/resources](src/main/resources)
 - [application.yaml](src/main/resources/application.yaml)
     - contains the application configuration properties
-- [db.migration](src/main/resources/db/migration/)
+- [db.migration](src/main/resources/db/migration)
     - contains the Flyway database migration files. Do not change already deployed database migration files!
 
 ## Detailed documentation
