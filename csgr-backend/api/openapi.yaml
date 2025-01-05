@@ -1,0 +1,238 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /groupchat/year-plan:
+    get:
+      tags:
+      - year-plan-controller
+      operationId: listYearPlans
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/YearPlanDto"
+    post:
+      tags:
+      - year-plan-controller
+      summary: Create a year plan
+      description: Creates a groupchat roulette year plan based on the given criteria
+      operationId: createGroupchatYearPlan
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/YearPlanCreateDto"
+        required: true
+      responses:
+        "201":
+          description: "Successfully created year plan, returns UUID of created year\
+            \ plan."
+          content:
+            application/json:
+              schema:
+                type: string
+        "400":
+          description: Given parameters are not valid
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /groupchat/year-plan/{uuid}:
+    get:
+      tags:
+      - year-plan-controller
+      summary: Retrieve a year plan
+      description: Retrieve a year plan with detailed information
+      operationId: getYearPlan
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Successfully retrieved year plan, returns year plan with details."
+          content:
+            application/json:
+              schema:
+                type: string
+        "404":
+          description: Year plan with given UUID was not found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/YearPlanDetailDto"
+  /groupchat/year-plan/{uuid}/xslx:
+    get:
+      tags:
+      - year-plan-controller
+      summary: Download excel overview of year plan
+      description: "Download excel overview of year plan, contains encounter matrix"
+      operationId: exportYearPlan
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Successfully retrieved year plan and created excel file, returns\
+            \ excel file for download."
+          content:
+            application/json:
+              schema:
+                type: string
+        "404":
+          description: Year plan with given UUID was not found
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+  /groupchat/year-plan/{uuid}/ics:
+    get:
+      tags:
+      - year-plan-controller
+      summary: Download iCalendar file with year plan events
+      description: Download iCalendar file with year plan events for import in different
+        calendars
+      operationId: downloadYearPlanICS
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Successfully retrieved year plan and created iCal file, returns\
+            \ .ics file for download."
+          content:
+            application/json:
+              schema:
+                type: string
+        "404":
+          description: Year plan with given UUID was not found
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+components:
+  schemas:
+    YearPlanCreateDto:
+      type: object
+      properties:
+        employees:
+          type: array
+          description: List of employee names to be included in the year plan
+          example:
+          - Max Mustermann
+          - Erika Mustermann
+          items:
+            type: string
+          maxItems: 2147483647
+          minItems: 4
+        groupCount:
+          type: integer
+          format: int32
+          minimum: 2
+        rotation:
+          type: string
+          enum:
+          - DAILY
+          - WEEKLY
+          - MONTHLY
+        year:
+          type: integer
+          format: int32
+      required:
+      - employees
+      - groupCount
+      - rotation
+      - year
+    AppointmentDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+        fromDate:
+          type: string
+          format: date
+        groups:
+          type: array
+          items:
+            $ref: "#/components/schemas/AppointmentGroupDto"
+    AppointmentGroupDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+        employees:
+          type: array
+          items:
+            type: string
+    YearPlanDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+        year:
+          type: integer
+          format: int32
+        rotation:
+          type: string
+          enum:
+          - DAILY
+          - WEEKLY
+          - MONTHLY
+        employees:
+          type: array
+          items:
+            type: string
+        appointments:
+          type: array
+          items:
+            $ref: "#/components/schemas/AppointmentDto"
+    YearPlanDetailDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+        year:
+          type: integer
+          format: int32
+        rotation:
+          type: string
+          enum:
+          - DAILY
+          - WEEKLY
+          - MONTHLY
+        employees:
+          type: array
+          items:
+            type: string
+        appointments:
+          type: array
+          items:
+            $ref: "#/components/schemas/AppointmentDto"
+        encounterMatrix:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: integer
+              format: int32

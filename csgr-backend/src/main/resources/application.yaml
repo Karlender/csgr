@@ -1,3 +1,19 @@
 spring:
   banner:
     location: classpath:banner.txt
+  datasource:
+    url: jdbc:postgresql://localhost:15432/csgr_db
+    username: postgres
+    password: +d5;_aQpBP(t3]!kHh9g_hXN9dG^m-N9
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    # Useful for debugging purposes
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+  flyway:
+    enabled: true
