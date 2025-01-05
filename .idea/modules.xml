@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/case_study_groupchat_roulette.iml" filepath="$PROJECT_DIR$/.idea/case_study_groupchat_roulette.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/csgr-backend.main.iml" filepath="$PROJECT_DIR$/.idea/modules/csgr-backend.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/csgr-frontend.iml" filepath="$PROJECT_DIR$/csgr-frontend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/csgr-frontend/csgr-frontend.iml" filepath="$PROJECT_DIR$/csgr-frontend/csgr-frontend.iml" />
     </modules>
   </component>
 </project>
