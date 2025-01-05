@@ -95,10 +95,15 @@ In combination with the reliability concerns we have to ensure to keep services 
 
 Proper input validation, error handling and API responses for the frontend enable the backend to be more resilient regarding invalid API inputs.
 
-# Things I'd do differently, if this was some different system going into production
+# Things I'd do differently or consider, if this was some different system going into production
 
 1) Put the DB password in a secret instead of cleartext within the docker-compose file
 2) Use ENVs for configuration of the different software components
 3) Secure the application (authentication and authorization)
-4) Move api-file generation to pre-commit Hook or CI-Pipeline instead of manual execution
-5) Consider using a Java mapping library (eg. MapStruct)
+4) Provide Dockerfiles for building docker images of services
+5) Create CI-Pipeline
+6) Provide Tests for the application
+7) Setup logging and monitoring for the application (eg. with Prometheus and Grafana)
+8) Move api-file generation to pre-commit Hook or CI-Pipeline instead of manual execution
+9) Consider using a Java mapping library (eg. MapStruct)
+10) Solve N+1 problem currently present in backend
